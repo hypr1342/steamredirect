@@ -3,7 +3,11 @@
 <title>Redirection</title>
 </head>
 <script language="javascript">
-let param = location.search.split('myParam=')[1];
-console.log(param);
+var url_string = window.location.href; 
+var url = new URL(url_string);
+var ip = url.searchParams.get("ip");
+var port = url.searchParams.get("port");
+console.log(ip);
+console.log(port);
 </script>
 </html>
