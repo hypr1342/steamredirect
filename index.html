@@ -1,14 +1,29 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>Redirection</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirection</title>
+    <script defer>
+        (function() {
+            // Get URL search parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const ip = urlParams.get("ip");
+            const port = urlParams.get("port");
+
+            // Validate IP and port
+            if (ip && port) {
+                // Construct Steam URL and redirect
+                const steamUrl = `steam://connect/${encodeURIComponent(ip)}:${encodeURIComponent(port)}`;
+                window.location.href = steamUrl;
+            } else {
+                // Optionally display a message to the user or handle errors gracefully
+                console.error("Missing or invalid IP or port parameters.");
+            }
+        })();
+    </script>
 </head>
-<script language="javascript">
-var url_string = window.location.href; 
-var url = new URL(url_string);
-var ip = url.searchParams.get("ip");
-var port = url.searchParams.get("port");
-console.log(ip);
-console.log(port);
-window.location.href = "steam://connect/" + ip + ":" + port
-</script>
+<body>
+    <p>Redirecting to Steam...</p>
+</body>
 </html>
